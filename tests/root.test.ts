@@ -1,7 +1,8 @@
 import request from 'supertest';
 
 import app from '../src/app';
-import { closeRedisConnection } from '../src/config/redis';
+
+jest.mock('ioredis');
 
 describe('GET /', () => {
   let server: any;
@@ -12,7 +13,6 @@ describe('GET /', () => {
 
   afterAll(async () => {
     await server.close();
-    await closeRedisConnection();
   });
 
   it('should return "English Dictionary"', async () => {
