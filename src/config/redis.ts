@@ -11,4 +11,8 @@ if (!redisUrl) {
 
 const redis = new Redis(redisUrl);
 
+export const closeRedisConnection = () => {
+  return redis.quit();
+};
+
 export default redis;

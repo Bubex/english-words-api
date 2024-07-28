@@ -1,25 +1,11 @@
-import * as fs from 'fs';
-import * as path from 'path';
-
 import dotenv from 'dotenv';
-import express from 'express';
-import swaggerUi from 'swagger-ui-express';
 
+import app from './app';
 import prisma from './config/prisma';
-import routes from './routes';
 
 dotenv.config();
 
-const app = express();
 const PORT = process.env.PORT ?? 3333;
-
-app.use(express.json());
-app.use('/api', routes);
-
-const swaggerDocument = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '../openapi.json'), 'utf-8'),
-);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 prisma
   .$connect()
