@@ -85,4 +85,4 @@ workflows:
             - build-node
           filters:
             branches:
-              only: master
+              only: main
