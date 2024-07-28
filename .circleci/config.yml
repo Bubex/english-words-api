@@ -23,7 +23,6 @@ jobs:
     executor: node/default
     environment:
       JWT_SECRET: $JWT_SECRET
-      DATABASE_URL: $DATABASE_URL
       REDIS_URL: $REDIS_URL
       RENDER_SERVICE_ID: $RENDER_SERVICE_ID
       RENDER_API_KEY: $RENDER_API_KEY
