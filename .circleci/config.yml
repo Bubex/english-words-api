@@ -46,9 +46,8 @@ jobs:
       - run:
           name: Deploy to Render
           command: |
-            curl -X POST https://api.render.com/deploy/srv-${RENDER_SERVICE_ID}/deploys \
+            curl -X POST https://api.render.com/deploy/srv-${RENDER_SERVICE_ID}?key=${RENDER_DEPLOY_KEY} \
             -H 'Accept: application/json' \
-            -H 'Authorization: Bearer ${RENDER_API_KEY}' \
             -d ''
 
 workflows:
