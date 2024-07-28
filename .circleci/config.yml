@@ -49,6 +49,15 @@ jobs:
             curl -X POST https://api.render.com/deploy/srv-${RENDER_SERVICE_ID}?key=${RENDER_DEPLOY_KEY} \
             -H 'Accept: application/json' \
             -d ''
+  import-words:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Run import script
+          command: npm run import:words
 
 workflows:
   build-test-deploy:
@@ -60,3 +69,6 @@ workflows:
           filters:
             branches:
               only: main
+  import-words-workflow:
+    jobs:
+      - import-words
