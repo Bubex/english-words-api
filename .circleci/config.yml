@@ -32,11 +32,14 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          name: Print Environment Variables
-          command: |
-            echo "DATABASE_URL: $DATABASE_URL"
-            echo "REDIS_URL: $REDIS_URL"
-            echo "JWT_SECRET: $JWT_SECRET"
+          name: Print Database URL Environment Variable 1
+          command: echo $DATABASE_URL
+      - run:
+          name: Print Database URL Environment Variable 2
+          command: echo ${DATABASE_URL}
+      - run:
+          name: Print Database URL Environment Variable 3
+          command: 'echo $DATABASE_URL'
       - run:
           name: Generate Prisma Client
           command: npm run generate
