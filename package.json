@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "build": "npm run generate && tsc",
-    "start": "ts-node-dev src/server.ts",
+    "start:dev": "ts-node-dev src/server.ts",
     "start:prod": "node dist/src/server.js",
     "import:words": "ts-node src/scripts/importWords.ts",
     "test": "jest --detectOpenHandles --forceExit",
