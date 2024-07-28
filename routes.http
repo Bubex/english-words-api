@@ -1,0 +1,78 @@
+@baseURL = http://localhost:3333/api
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsejQ5ZGhhYTAwMDBnMnd3NXU1NDBleGYiLCJuYW1lIjoiVXNlciAxIiwiaWF0IjoxNzIyMTE1NzMzLCJleHAiOjE3MjIxMTkzMzN9.3HlHgYwpGmAMxiJziykgMs3KLRMQbzqTYwAqejiZnWo
+
+
+### Hello API
+GET {{baseURL}}
+
+###
+
+### Sign Up
+POST {{baseURL}}/auth/signup
+Content-Type: application/json
+
+{
+    "name": "User 1", 
+    "email": "example2@email.com", 
+    "password": "teste123"
+}
+
+###
+
+### Sign In
+POST {{baseURL}}/auth/signin
+Content-Type: application/json
+
+{
+    "email": "example2@email.com", 
+    "password": "teste123"
+}
+
+###
+
+### List Words without Search
+GET {{baseURL}}/entries/en
+Authorization: Bearer {{token}}
+
+###
+
+### List Words with Search
+GET {{baseURL}}/entries/en?search=fire
+Authorization: Bearer {{token}}
+
+###
+
+### Get Word
+GET {{baseURL}}/entries/en/fire
+Authorization: Bearer {{token}}
+
+###
+
+### Favorite Word
+POST {{baseURL}}/entries/en/fire/favorite
+Authorization: Bearer {{token}}
+
+###
+
+### Unfavorite Word
+DELETE {{baseURL}}/entries/en/fire/unfavorite
+Authorization: Bearer {{token}}
+
+###
+
+### Get Me
+GET {{baseURL}}/user/me
+Authorization: Bearer {{token}}
+
+###
+
+### Get My History
+GET {{baseURL}}/user/me/history
+Authorization: Bearer {{token}}
+
+###
+
+### List My Favorites
+GET {{baseURL}}/user/me/favorites
+Authorization: Bearer {{token}}
+
