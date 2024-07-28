@@ -74,7 +74,7 @@ jobs:
             -H 'Authorization: Bearer ${RENDER_API_KEY}' \
             -d ''
 workflows:
-  build-and-test:
+  build-test-deploy:
     jobs:
       - test-node
       - build-node:
