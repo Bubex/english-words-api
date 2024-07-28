@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@5
+
 jobs:
   test-node:
     executor: node/default
@@ -19,15 +20,23 @@ jobs:
           command: npm run test --ci --runInBand --reporters=default --reporters=jest-junit
       - store_test_results:
           path: ./test-results/
-  build-node:
+
+  build-and-deploy:
     executor: node/default
     environment:
+      JWT_SECRET: ${JWT_SECRET}
       DATABASE_URL: ${DATABASE_URL}
       REDIS_URL: ${REDIS_URL}
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
+      - run:
+          name: Print Environment Variables
+          command: |
+            echo "DATABASE_URL: $DATABASE_URL"
+            echo "REDIS_URL: $REDIS_URL"
+            echo "JWT_SECRET: $JWT_SECRET"
       - run:
           name: Generate Prisma Client
           command: npm run generate
@@ -46,26 +55,6 @@ jobs:
       - store_artifacts:
           path: ~/artifacts
           destination: node-build
-  deploy:
-    docker:
-      - image: cimg/base:stable
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-      REDIS_URL: ${REDIS_URL}
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: npm install
-      - run:
-          name: Generate Prisma Client
-          command: npm run generate
-      - run:
-          name: Apply Prisma Migrations
-          command: npm run migrate:prod
-      - run:
-          name: Build project
-          command: npm run build
       - run:
           name: Deploy to Render
           command: |
@@ -73,16 +62,14 @@ jobs:
             -H 'Accept: application/json' \
             -H 'Authorization: Bearer ${RENDER_API_KEY}' \
             -d ''
+
 workflows:
   build-test-deploy:
     jobs:
       - test-node
-      - build-node:
+      - build-and-deploy:
           requires:
             - test-node
-      - deploy:
-          requires:
-            - build-node
           filters:
             branches:
               only: main
