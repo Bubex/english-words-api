@@ -14,7 +14,7 @@ services:
     depends_on:
       - db
       - redis
-    command: sh -c "npm install && npm run migrate:prod && npm run start"
+    command: sh -c "npm install && npm run migrate:prod && npm run start:prod"
 
   db:
     image: postgres:13

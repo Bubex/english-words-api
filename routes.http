@@ -1,4 +1,5 @@
-@baseURL = http://localhost:3333/api
+# @baseURL = http://localhost:3333/api
+@baseURL = https://english-words-api-l29t.onrender.com/api
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsejQ5ZGhhYTAwMDBnMnd3NXU1NDBleGYiLCJuYW1lIjoiVXNlciAxIiwiaWF0IjoxNzIyMTE1NzMzLCJleHAiOjE3MjIxMTkzMzN9.3HlHgYwpGmAMxiJziykgMs3KLRMQbzqTYwAqejiZnWo
 
 
@@ -13,7 +14,7 @@ Content-Type: application/json
 
 {
     "name": "User 1", 
-    "email": "example2@email.com", 
+    "email": "teste@teste.com", 
     "password": "teste123"
 }
 

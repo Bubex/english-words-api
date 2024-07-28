@@ -4,12 +4,14 @@ import axios from 'axios';
 const prisma = new PrismaClient();
 const URL =
   'https://raw.githubusercontent.com/dwyl/english-words/master/words_dictionary.json';
-const BATCH_SIZE = 5000;
+const BATCH_SIZE = 1000;
 
 const importWords = async () => {
   try {
+    console.log('Iniciando importação...');
     const { data, status, statusText } = await axios.get(URL);
 
+    console.log('Lista de palavras carregada...');
     if (status !== 200) {
       throw new Error(`Failed to fetch data: ${statusText}`);
     }

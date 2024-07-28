@@ -19,9 +19,11 @@
   "include": [
     "src/**/*",
     "src/types",
-    "tests/**/*"
+    "tests/**/*",
+    "openapi.json"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "tests"
   ]
 }
