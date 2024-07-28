@@ -18,7 +18,6 @@ jobs:
       - store_test_results:
           path: ./test-results/
   build-node:
-    # Build node project
     executor: node/default
     steps:
       - checkout
@@ -39,9 +38,14 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - checkout
       - run:
-          name: deploy
-          command: '#e.g. ./deploy.sh'
+          name: Deploy to Render
+          command: |
+            curl -X POST https://api.render.com/deploy/srv-${RENDER_SERVICE_ID}/deploys \
+            -H 'Accept: application/json' \
+            -H 'Authorization: Bearer ${RENDER_API_KEY}' \
+            -d ''
 workflows:
   build-and-test:
     jobs:
@@ -49,3 +53,9 @@ workflows:
       - build-node:
           requires:
             - test-node
+      - deploy:
+          requires:
+            - build-node
+          filters:
+            branches:
+              only: master
