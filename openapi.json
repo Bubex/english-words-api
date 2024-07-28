@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3333/api"
+      "url": "https://english-words-api-l29t.onrender.com/api"
     }
   ],
   "components": {
@@ -44,7 +44,7 @@
           }
         }
       },
-      "HistoryEntry": {
+      "History": {
         "type": "object",
         "properties": {
           "word": {
@@ -56,7 +56,7 @@
           }
         }
       },
-      "FavoriteEntry": {
+      "Favorite": {
         "type": "object",
         "properties": {
           "word": {
