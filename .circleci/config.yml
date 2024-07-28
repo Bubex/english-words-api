@@ -21,24 +21,10 @@ jobs:
 
   build-and-deploy:
     executor: node/default
-    environment:
-      JWT_SECRET: $JWT_SECRET
-      REDIS_URL: $REDIS_URL
-      RENDER_SERVICE_ID: $RENDER_SERVICE_ID
-      RENDER_API_KEY: $RENDER_API_KEY
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
-      - run:
-          name: Print Database URL Environment Variable 1
-          command: echo $DATABASE_URL
-      - run:
-          name: Print Database URL Environment Variable 2
-          command: echo ${DATABASE_URL}
-      - run:
-          name: Print Database URL Environment Variable 3
-          command: 'echo $DATABASE_URL'
       - run:
           name: Generate Prisma Client
           command: npm run generate
